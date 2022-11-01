@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/disciplinas")
@@ -30,6 +31,16 @@ public class DisciplinaController {
     @GetMapping
     public ResponseEntity<List<DisciplinaModel>> buscarTodos(){
         return ResponseEntity.status(HttpStatus.OK).body(disciplinaService.buscarTodos());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> buscarPorId(@PathVariable(value = "id") Long id){
+        Optional<DisciplinaModel> disciplinaModelOptional = disciplinaService.buscarPorId(id);
+
+        if (!disciplinaModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Disciplina não encontrada!");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(disciplinaModelOptional.get());
     }
 
 
