@@ -43,5 +43,16 @@ public class DisciplinaController {
         return ResponseEntity.status(HttpStatus.OK).body(disciplinaModelOptional.get());
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletarDisciplina(@PathVariable(value = "id") Long id){
+        Optional<DisciplinaModel> disciplinaModelOptional = disciplinaService.buscarPorId(id);
+
+        if (!disciplinaModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Disciplina não encontrada!");
+        }
+        disciplinaService.delete(disciplinaModelOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Disciplina deletada com sucesso!");
+    }
+
 
 }

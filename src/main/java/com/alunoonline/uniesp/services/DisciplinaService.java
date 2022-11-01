@@ -26,4 +26,8 @@ public class DisciplinaService {
     public Optional<DisciplinaModel> buscarPorId(Long id) {
         return disciplinaRepository.findById(id);
     }
+
+    public void delete(DisciplinaModel disciplinaModel) {
+        disciplinaRepository.delete(disciplinaModel);
+    }
 }
