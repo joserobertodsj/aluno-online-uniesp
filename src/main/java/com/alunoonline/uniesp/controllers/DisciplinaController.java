@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/disciplinas")
@@ -24,6 +25,11 @@ public class DisciplinaController {
         BeanUtils.copyProperties(disciplinaDto, disciplinaModel);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(disciplinaService.save(disciplinaModel));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<DisciplinaModel>> buscarTodos(){
+        return ResponseEntity.status(HttpStatus.OK).body(disciplinaService.buscarTodos());
     }
 
 
