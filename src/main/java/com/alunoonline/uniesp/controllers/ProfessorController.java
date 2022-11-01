@@ -22,6 +22,7 @@ public class ProfessorController {
     private ProfessorService professorService;
 
 
+
     @PostMapping
     public ResponseEntity<Object> salvarProfessor (@RequestBody @Valid ProfessorDto professorDto){
 
@@ -42,6 +43,21 @@ public class ProfessorController {
         if(!professorModelOptional.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Professor não encontrado!");
         }
+
         return ResponseEntity.status(HttpStatus.OK).body(professorModelOptional.get());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletarProfessor(@PathVariable(value = "id") Long id){
+        Optional<ProfessorModel> professorModelOptional = professorService.buscarPorId(id);
+
+        if(!professorModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Professor não encontrado!");
+        }
+
+        professorService.delete(professorModelOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Professor deletado com sucesso!");
+
+    }
+
 }
