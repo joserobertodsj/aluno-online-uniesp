@@ -54,5 +54,21 @@ public class DisciplinaController {
         return ResponseEntity.status(HttpStatus.OK).body("Disciplina deletada com sucesso!");
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> atualizarDisciplina(@PathVariable(value = "id") Long id, @RequestBody @Valid DisciplinaDto disciplinaDto){
+        Optional<DisciplinaModel> disciplinaModelOptional = disciplinaService.buscarPorId(id);
+
+        if (!disciplinaModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Disciplina não encontrada!");
+        }
+
+        var disciplinaModel = new DisciplinaModel();
+        BeanUtils.copyProperties(disciplinaDto, disciplinaModel);
+
+        disciplinaModel.setId(disciplinaModelOptional.get().getId());
+
+        return ResponseEntity.status(HttpStatus.OK).body(disciplinaService.save(disciplinaModel));
+    }
+
 
 }
