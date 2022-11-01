@@ -60,4 +60,20 @@ public class ProfessorController {
 
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> atualizarProfessor (@PathVariable(value = "id") Long id, @RequestBody @Valid ProfessorDto professorDto){
+        Optional<ProfessorModel> professorModelOptional = professorService.buscarPorId(id);
+
+        if(!professorModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Professor não encontrado!");
+        }
+
+        var professorModel = new ProfessorModel();
+        BeanUtils.copyProperties(professorDto, professorModel);
+
+        professorModel.setId(professorModelOptional.get().getId());
+
+        return ResponseEntity.status(HttpStatus.OK).body(professorService.save(professorModel));
+    }
+
 }
