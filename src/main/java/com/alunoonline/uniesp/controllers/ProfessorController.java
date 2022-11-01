@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/professores")
@@ -32,5 +33,15 @@ public class ProfessorController {
     @GetMapping
     public ResponseEntity<List<ProfessorModel>> buscarTodos(){
         return ResponseEntity.status(HttpStatus.OK).body(professorService.buscarTodos());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> buscarPorId (@PathVariable(value = "id") Long id){
+        Optional<ProfessorModel> professorModelOptional = professorService.buscarPorId(id);
+
+        if(!professorModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Professor não encontrado!");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(professorModelOptional.get());
     }
 }
