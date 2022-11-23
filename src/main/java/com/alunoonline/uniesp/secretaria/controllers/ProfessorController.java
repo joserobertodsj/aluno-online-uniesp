@@ -1,9 +1,9 @@
-package com.alunoonline.uniesp.controllers;
+package com.alunoonline.uniesp.secretaria.controllers;
 
 
-import com.alunoonline.uniesp.models.ProfessorModel;
-import com.alunoonline.uniesp.models.dtos.ProfessorDto;
-import com.alunoonline.uniesp.services.ProfessorService;
+import com.alunoonline.uniesp.secretaria.services.ProfessorService;
+import com.alunoonline.uniesp.secretaria.models.ProfessorModel;
+import com.alunoonline.uniesp.secretaria.models.dtos.ProfessorDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

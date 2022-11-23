@@ -1,6 +1,6 @@
-package com.alunoonline.uniesp.models.dtos;
+package com.alunoonline.uniesp.secretaria.models.dtos;
 
-import com.alunoonline.uniesp.models.ProfessorModel;
+import com.alunoonline.uniesp.secretaria.models.ProfessorModel;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

@@ -1,15 +1,14 @@
-package com.alunoonline.uniesp.models;
-
+package com.alunoonline.uniesp.secretaria.models;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Data
+
 @Entity
-@Table(name = "tb_professor")
-public class ProfessorModel implements Serializable {
+@Data
+@Table(name = "tb_aluno")
+public class AlunoModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
@@ -22,4 +21,7 @@ public class ProfessorModel implements Serializable {
 
     @Column(nullable = false, length = 130)
     private String email;
+
+    @Column(nullable = false, length = 130)
+    private String curso;
 }

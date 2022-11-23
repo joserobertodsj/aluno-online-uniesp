@@ -1,4 +1,4 @@
-package com.alunoonline.uniesp.models;
+package com.alunoonline.uniesp.secretaria.models;
 
 import lombok.Data;
 

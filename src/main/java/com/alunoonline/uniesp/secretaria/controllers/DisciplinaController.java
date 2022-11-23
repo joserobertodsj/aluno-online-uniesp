@@ -1,8 +1,8 @@
-package com.alunoonline.uniesp.controllers;
+package com.alunoonline.uniesp.secretaria.controllers;
 
-import com.alunoonline.uniesp.models.DisciplinaModel;
-import com.alunoonline.uniesp.models.dtos.DisciplinaDto;
-import com.alunoonline.uniesp.services.DisciplinaService;
+import com.alunoonline.uniesp.secretaria.services.DisciplinaService;
+import com.alunoonline.uniesp.secretaria.models.DisciplinaModel;
+import com.alunoonline.uniesp.secretaria.models.dtos.DisciplinaDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

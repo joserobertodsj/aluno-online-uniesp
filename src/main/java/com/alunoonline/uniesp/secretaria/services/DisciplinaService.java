@@ -1,7 +1,7 @@
-package com.alunoonline.uniesp.services;
+package com.alunoonline.uniesp.secretaria.services;
 
-import com.alunoonline.uniesp.models.DisciplinaModel;
-import com.alunoonline.uniesp.repositories.DisciplinaRepository;
+import com.alunoonline.uniesp.secretaria.repositories.DisciplinaRepository;
+import com.alunoonline.uniesp.secretaria.models.DisciplinaModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

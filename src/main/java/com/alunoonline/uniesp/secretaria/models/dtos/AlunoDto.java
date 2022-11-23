@@ -1,4 +1,4 @@
-package com.alunoonline.uniesp.models.dtos;
+package com.alunoonline.uniesp.secretaria.models.dtos;
 
 import lombok.Data;
 

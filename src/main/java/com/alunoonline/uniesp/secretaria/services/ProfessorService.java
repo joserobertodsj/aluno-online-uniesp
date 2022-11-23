@@ -1,8 +1,8 @@
-package com.alunoonline.uniesp.services;
+package com.alunoonline.uniesp.secretaria.services;
 
 
-import com.alunoonline.uniesp.models.ProfessorModel;
-import com.alunoonline.uniesp.repositories.ProfessorRepository;
+import com.alunoonline.uniesp.secretaria.models.ProfessorModel;
+import com.alunoonline.uniesp.secretaria.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
