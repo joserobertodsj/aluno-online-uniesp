@@ -22,10 +22,8 @@ public class DisciplinaController {
 
     @PostMapping
     public ResponseEntity<Object> salvarDisciplina (@RequestBody @Valid DisciplinaDto disciplinaDto){
-        var disciplinaModel = new DisciplinaModel();
-        BeanUtils.copyProperties(disciplinaDto, disciplinaModel);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(disciplinaService.save(disciplinaModel));
+        disciplinaService.salvar(disciplinaDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Disciplina cadastrada com sucesso!");
     }
 
     @GetMapping
@@ -35,39 +33,20 @@ public class DisciplinaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> buscarPorId(@PathVariable(value = "id") Long id){
-        Optional<DisciplinaModel> disciplinaModelOptional = disciplinaService.buscarPorId(id);
 
-        if (!disciplinaModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Disciplina não encontrada!");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(disciplinaModelOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body(disciplinaService.buscarPorId(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletarDisciplina(@PathVariable(value = "id") Long id){
-        Optional<DisciplinaModel> disciplinaModelOptional = disciplinaService.buscarPorId(id);
-
-        if (!disciplinaModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Disciplina não encontrada!");
-        }
-        disciplinaService.delete(disciplinaModelOptional.get());
+        disciplinaService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body("Disciplina deletada com sucesso!");
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> atualizarDisciplina(@PathVariable(value = "id") Long id, @RequestBody @Valid DisciplinaDto disciplinaDto){
-        Optional<DisciplinaModel> disciplinaModelOptional = disciplinaService.buscarPorId(id);
-
-        if (!disciplinaModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Disciplina não encontrada!");
-        }
-
-        var disciplinaModel = new DisciplinaModel();
-        BeanUtils.copyProperties(disciplinaDto, disciplinaModel);
-
-        disciplinaModel.setId(disciplinaModelOptional.get().getId());
-
-        return ResponseEntity.status(HttpStatus.OK).body(disciplinaService.save(disciplinaModel));
+        disciplinaService.alualizarDisciplina(id, disciplinaDto);
+        return ResponseEntity.status(HttpStatus.OK).body("Disciplina atualizada com sucesso!");
     }
 
 
