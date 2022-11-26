@@ -25,10 +25,8 @@ public class ProfessorController {
 
     @PostMapping
     public ResponseEntity<Object> salvarProfessor (@RequestBody @Valid ProfessorDto professorDto){
-
-        var professorModel = new ProfessorModel();
-        BeanUtils.copyProperties(professorDto, professorModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(professorService.save(professorModel));
+        professorService.salvar(professorDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Professor cadastrado com sucesso!");
     }
 
     @GetMapping
@@ -38,42 +36,20 @@ public class ProfessorController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> buscarPorId (@PathVariable(value = "id") Long id){
-        Optional<ProfessorModel> professorModelOptional = professorService.buscarPorId(id);
-
-        if(!professorModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Professor não encontrado!");
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(professorModelOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body(professorService.buscarPorId(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletarProfessor(@PathVariable(value = "id") Long id){
-        Optional<ProfessorModel> professorModelOptional = professorService.buscarPorId(id);
-
-        if(!professorModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Professor não encontrado!");
-        }
-
-        professorService.delete(professorModelOptional.get());
+        professorService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body("Professor deletado com sucesso!");
 
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> atualizarProfessor (@PathVariable(value = "id") Long id, @RequestBody @Valid ProfessorDto professorDto){
-        Optional<ProfessorModel> professorModelOptional = professorService.buscarPorId(id);
-
-        if(!professorModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Professor não encontrado!");
-        }
-
-        var professorModel = new ProfessorModel();
-        BeanUtils.copyProperties(professorDto, professorModel);
-
-        professorModel.setId(professorModelOptional.get().getId());
-
-        return ResponseEntity.status(HttpStatus.OK).body(professorService.save(professorModel));
+        professorService.atualizarProfessor(id, professorDto);
+        return ResponseEntity.status(HttpStatus.OK).body("Professor atualizado com sucesso!");
     }
 
 }
