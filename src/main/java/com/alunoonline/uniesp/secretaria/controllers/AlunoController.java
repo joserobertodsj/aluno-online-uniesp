@@ -22,7 +22,7 @@ public class AlunoController {
     @PostMapping
     public ResponseEntity<Object> salvarAluno (@RequestBody @Valid AlunoDto alunoDto){
         alunoService.salvar(alunoDto);
-        return ResponseEntity.status(HttpStatus.OK).body("Aluno cadastrado com sucesso!");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Aluno cadastrado com sucesso!");
     }
 
     @GetMapping

@@ -1,7 +1,6 @@
 package com.alunoonline.uniesp.matricula_aluno.enums;
 
-public enum SituacaoMatriculaAluno {
+public enum Status {
     MATRICULADO,
-    APROVADO,
-    REPROVADO,
+    FECHADA
 }
