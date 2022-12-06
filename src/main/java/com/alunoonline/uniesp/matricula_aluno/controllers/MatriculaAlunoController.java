@@ -21,6 +21,15 @@ public class MatriculaAlunoController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Matrícula efetuada com sucesso!");
     }
 
+
+    @PatchMapping("/atualizacao-status-matriculas/{id}")
+    public ResponseEntity<Object> atualizarStatusMatricula(@PathVariable(value = "id") Long matriculaAlunoId){
+        matriculaAlunoService.atualizarStatusMatricula(matriculaAlunoId);
+        return ResponseEntity.status(HttpStatus.OK).body("Atualização realizada com sucesso!");
+    }
+
+
+
     @PatchMapping("/atualizacao-notas/{id}")
     public ResponseEntity<Object> atualizarInformacoesProfessor(
             @PathVariable(value = "id") Long matriculaAlunoId,
@@ -28,5 +37,12 @@ public class MatriculaAlunoController {
         matriculaAlunoService.atualizarInformacoesProfessor(matriculaAlunoId, matriculaAlunoDtoProfessor);
         return ResponseEntity.status(HttpStatus.OK).body("Atualizações realizadas com sucesso!");
     }
+
+    @GetMapping("/lista-matriculas/{id}")
+    public ResponseEntity<Object> listarHistoricoAlunos(@PathVariable(value = "id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(matriculaAlunoService.listarHistoricoAluno(id));
+    }
+
+
 
 }

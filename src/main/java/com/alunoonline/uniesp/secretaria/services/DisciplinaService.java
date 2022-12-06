@@ -22,6 +22,7 @@ public class DisciplinaService {
     @Transactional
     public DisciplinaModel salvar(DisciplinaDto disciplinaDto) {
         var disciplinaModel = new DisciplinaModel();
+
         BeanUtils.copyProperties(disciplinaDto, disciplinaModel);
 
         return disciplinaRepository.save(disciplinaModel);
